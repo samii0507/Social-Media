@@ -11,6 +11,9 @@ import { fileURLToPath } from "url";
 import exp from "constants";
 import { error } from "console";
 import { register } from "module";
+import { verifyToken } from "./middleware/auth";
+import authRoutes from "./routes/auth";
+import userRoutes from "./routes/users";
 
 // Get the current file name (__filename) and the directory name (__dirname)
 // of the current module in an ES module context.
@@ -54,7 +57,11 @@ const upload = multer({ storage });
 
 //ROUTES WITH FILES
 
-app.post("/auth/register",upload.single("picture"), );
+app.post("/auth/register",upload.single("picture"), verifyToken,register);
+
+//ROutes
+app.use("/auth",authRoutes);
+app.use("/user",userRoutes);
 
 //MONGOOSE SETUP
 const PORT = process.env.PORT || 6001;
