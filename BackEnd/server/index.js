@@ -10,10 +10,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import exp from "constants";
 import { error } from "console";
-import { register } from "module";
+import { register } from "./controllers/auth";
+import {createPost} from "./controllers/posts"
 import { verifyToken } from "./middleware/auth";
 import authRoutes from "./routes/auth";
 import userRoutes from "./routes/users";
+import postRoutes from "./routes/posts"
 
 // Get the current file name (__filename) and the directory name (__dirname)
 // of the current module in an ES module context.
@@ -58,10 +60,11 @@ const upload = multer({ storage });
 //ROUTES WITH FILES
 
 app.post("/auth/register",upload.single("picture"), verifyToken,register);
-
+app.post("/posts",verifyToken,upload.single("picture"),createPost);
 //ROutes
 app.use("/auth",authRoutes);
 app.use("/user",userRoutes);
+app.use("/posts",postRoutes);
 
 //MONGOOSE SETUP
 const PORT = process.env.PORT || 6001;
