@@ -18,7 +18,7 @@ import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js"
 import User from "./models/User.js"
 import Post from "./models/Post.js";
- import { users,posts } from "./data/index.js";
+//  import { users,posts } from "./data/index.js";
 // Get the current file name (__filename) and the directory name (__dirname)
 // of the current module in an ES module context.
 const __filename = fileURLToPath(import.meta.url);
