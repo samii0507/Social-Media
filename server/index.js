@@ -10,12 +10,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import exp from "constants";
 import { error } from "console";
-import { register } from "./controllers/auth";
-import {createPost} from "./controllers/posts"
-import { verifyToken } from "./middleware/auth";
-import authRoutes from "./routes/auth";
-import userRoutes from "./routes/users";
-import postRoutes from "./routes/posts"
+import { register } from "./controllers/auth.js";
+import {createPost} from "./controllers/posts.js"
+import { verifyToken } from "./middleware/auth.js";
+import authRoutes from "./routes/auth.js";
+import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js"
 
 // Get the current file name (__filename) and the directory name (__dirname)
 // of the current module in an ES module context.
