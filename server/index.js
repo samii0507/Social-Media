@@ -11,13 +11,14 @@ import { fileURLToPath } from "url";
 import exp from "constants";
 import { error } from "console";
 import { register } from "./controllers/auth.js";
-import {createPost} from "./controllers/posts.js"
+import { createPost } from "./controllers/posts.js";
 import { verifyToken } from "./middleware/auth.js";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
-import postRoutes from "./routes/posts.js"
-import User from "./models/User.js"
+import postRoutes from "./routes/posts.js";
+import User from "./models/User.js";
 import Post from "./models/Post.js";
+
 //  import { users,posts } from "./data/index.js";
 // Get the current file name (__filename) and the directory name (__dirname)
 // of the current module in an ES module context.
@@ -44,7 +45,11 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 //to handle requests from different origins.
 // Serve static files from the "public/assets" directory when the "/assets" route is
 // accessed.
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 // FILE STORAGE
@@ -61,18 +66,17 @@ const upload = multer({ storage });
 
 //ROUTES WITH FILES
 
-app.post("/auth/register",upload.single("picture"), verifyToken,register);
-app.post("/posts",verifyToken,upload.single("picture"),createPost);
+app.post("/auth/register", upload.single("picture"), verifyToken, register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 //ROutes
-app.use("/auth",authRoutes);
-app.use("/user",userRoutes);
-app.use("/posts",postRoutes);
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+app.use("/posts", postRoutes);
 
 //MONGOOSE SETUP
 const PORT = process.env.PORT || 6001;
-mongoose.connect(process.env.MONGO_URL, {
-
-  })
+mongoose
+  .connect(process.env.MONGO_URL, {})
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
     //ADD DATA ONE TIME
@@ -80,4 +84,3 @@ mongoose.connect(process.env.MONGO_URL, {
     //  Post.insertMany(posts);
   })
   .catch((error) => console.log(`${error} did not connect`));
-
