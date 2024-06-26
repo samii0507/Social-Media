@@ -57,7 +57,7 @@ const NavBar = () => {
             },
           }}
         >
-          Sociopedia
+          InterAct.fy
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
