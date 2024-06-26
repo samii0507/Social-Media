@@ -57,7 +57,7 @@ const NavBar = () => {
             },
           }}
         >
-          InterAct.fy
+          InterRact.Fy
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween

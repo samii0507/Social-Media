@@ -14,7 +14,7 @@ const LoginPage = () => {
         textAlign="center"
       >
         <Typography fontSize="32px" fontWeight="bold" color="primary">
-          Sociopedia
+        InterRact.Fy
         </Typography>
       </Box>
       <Box
